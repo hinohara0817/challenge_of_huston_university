@@ -1,28 +1,53 @@
-import React from 'react'
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom'
 
+
+const Header = (props) => {
+  return <h1>{props.course}</h1>
+}
+const Button = () => (
+  <div>
+    <button>good</button>
+    <button>neutral</button>
+    <button>bad</button>
+  </div>
+)
+
+const Result = (props) =>(
+  <div>
+    <p>good{props.good}</p>
+    <p>neutral{props.neutral}</p>
+    <p>bad{props.bad}</p>
+  </div>
+)
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <div>
-      <h1>{course}</h1>
-      <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-      </p>
-      <p>
-        {part3} {exercises3}
-      </p>
-      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+      <h2>give feedback</h2>
+      <Button good={good} bad={bad} neutral={neutral}/>
+      <h2>statisctic</h2>
+      <Result />
     </div>
   )
 }
