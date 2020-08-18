@@ -18,12 +18,16 @@ const Result = (props) =>(
     <p>good{props.good}</p>
     <p>neutral{props.neutral}</p>
     <p>bad{props.bad}</p>
+    <p>all{props.all}</p>
+    <p>all{props.average / props.all}</p>
   </div>
 )
 const App = (props) => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+  const [all, setAll] = useState(0);
+  const [average, setAverage] = useState(0);
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -43,19 +47,25 @@ const App = (props) => {
   }
   const plusGood = () => {
     setGood(good+1)
+    setAll(all+1)
+    setAverage(average+1)
   }
   const plusNeutral = () => {
     setNeutral(neutral+1)
+    setAll(all+1)
+    setAverage(average+0)
   }
   const plusBad = () => {
     setBad(bad+1)
+    setAll(all+1)
+    setAverage(average-1)
   }
   return (
     <div>
       <h2>give feedback</h2>
       <Button plusGood={plusGood} plusNeutral={plusNeutral} plusBad={plusBad}/>
       <h2>statisctic</h2>
-      <Result good={good} bad={bad} neutral={neutral} />
+      <Result good={good} bad={bad} neutral={neutral} all={all} average={average} />
     </div>
   )
 }
