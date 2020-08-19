@@ -13,15 +13,44 @@ const Button = ({plusGood, plusNeutral, plusBad}) => (
   </div>
 )
 
-const Result = (props) =>(
-  <div>
-    <p>good{props.good}</p>
-    <p>neutral{props.neutral}</p>
-    <p>bad{props.bad}</p>
-    <p>all{props.all}</p>
-    <p>all{props.average / props.all}</p>
-  </div>
-)
+const Result = (props) => {
+  if (props.all === 0) {
+  return(
+    <div>
+      <p>No feedback given</p>
+    </div>
+  )
+  }
+  else{
+    return(
+    <table>
+      <tbody>
+      <tr>
+        <td>good</td>
+        <td>{props.good}</td>
+      </tr>
+      <tr>
+        <td>neutral</td>
+        <td>{props.neutral}</td>
+      </tr>
+      <tr>
+        <td>bad</td>
+        <td>{props.bad}</td>
+      </tr>
+      <tr>
+        <td>all</td>
+        <td>{props.all}</td>
+      </tr>
+      <tr>
+        <td>average</td>
+        <td>{props.average / props.all}</td>
+      </tr>
+      </tbody>
+    </table>
+    )
+  }
+
+}
 const App = (props) => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
